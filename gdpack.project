@@ -1,7 +1,6 @@
-[project]
-project_name = Pudding
-description = Hello World
-version = 1.5.6
-authors = Pud, pud2, pud3
-git_repository = 
-
+project:
+  authors: A & M
+  description: A project to test.
+  git_repository: ''
+  project_name: test-project
+  version: 0.0.1

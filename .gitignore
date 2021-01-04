@@ -1,8 +1,10 @@
 # Folders
 .vscode/
 
-# user/token file
+# this project
 secret.py
+.gdpack
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
