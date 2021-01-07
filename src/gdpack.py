@@ -1,12 +1,8 @@
 import click
-import semver
-import project
-import os
-import sys
-#from github import Github
+from project import Project
 
 
-#project.create()
+project = Project()
 
 @click.group()
 def cli():
@@ -15,16 +11,29 @@ def cli():
 
 @cli.command(name='init')
 def init():
-    if(project.check_package_accessible('gdpack')):
-        pass
-        #project.download_release('gdpack', '0.0.1')
+    if(project.project_file_exists()):
+        print('Project File exists, override?')
+        ans = project._yes_or_no('[y/N]', 'n')
+        
+        if(ans == 'n'):
+            print('Aborting...')
+            quit()
+    
+    project.init_project_file()
+    
 
 
 @cli.command(name='install')
 @click.argument('package')
 @click.argument('tag', default='latest')
-def install(package):
-    print(project.check_package_exists(package))
+def install(package, tag):
+    print(package)
+    print(tag)
+    if(project.check_release_tag_exists(package, tag)):
+        project.download_release(package, tag)
+    
+    else:
+        print("Package could not be found! Is your version correct?")
 
 
 
